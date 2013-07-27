@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YWeatherGetter4i/YWeatherListener.h"
+#import "YWeatherGetter4i/YWeatherUtils.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <YWeatherUtilsDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *mLabelWeatherInfo;
 
 @end

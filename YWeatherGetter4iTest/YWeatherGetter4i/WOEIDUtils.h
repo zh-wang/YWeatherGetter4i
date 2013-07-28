@@ -10,12 +10,14 @@
 #define _WOEID_UTILS_H_
 
 #import <Foundation/Foundation.h>
-#import "YWeather4iConsts.h"
+#import "Consts.h"
 #import "WOEIDUtilsDelegate.h"
+#import "TBXML.h"
 
 @interface WOEIDUtils : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 @property (nonatomic, retain) NSMutableData* receivedData;
 @property (nonatomic, assign) id mAfterReceiveDataDelegate;
+@property (nonatomic) TBXMLElement* mWOEIDelement;
 
 +(WOEIDUtils*)getInstance;
 -(void)queryWOEID:(NSString *)pPlaceName;

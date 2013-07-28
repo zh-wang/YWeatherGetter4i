@@ -11,6 +11,7 @@
 		C8D7038517A35FC2006BB177 /* WeatherInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D7038417A35FC2006BB177 /* WeatherInfo.m */; };
 		C8D7038817A35FFC006BB177 /* YWeatherUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D7038717A35FFC006BB177 /* YWeatherUtils.m */; };
 		C8D7038B17A37D6C006BB177 /* LogUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C8D7038A17A37D6C006BB177 /* LogUtils.m */; };
+		C8F0B0E317A4209000433A3B /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F0B0E217A4209000433A3B /* TBXML.m */; };
 		EF8BE401179E6FC600694D5E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8BE400179E6FC600694D5E /* UIKit.framework */; };
 		EF8BE403179E6FC600694D5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8BE402179E6FC600694D5E /* Foundation.framework */; };
 		EF8BE405179E6FC600694D5E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF8BE404179E6FC600694D5E /* CoreGraphics.framework */; };
@@ -29,7 +30,7 @@
 		C8B8BEB617A3FE5500CF3DA6 /* WOEIDUtilsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WOEIDUtilsDelegate.h; path = YWeatherGetter4i/WOEIDUtilsDelegate.h; sourceTree = "<group>"; };
 		C8D7037517A2DA4A006BB177 /* WOEIDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOEIDUtils.h; path = YWeatherGetter4i/WOEIDUtils.h; sourceTree = "<group>"; };
 		C8D7037617A2DA4A006BB177 /* WOEIDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOEIDUtils.m; path = YWeatherGetter4i/WOEIDUtils.m; sourceTree = "<group>"; };
-		C8D7037817A2DBE9006BB177 /* YWeather4iConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YWeather4iConsts.h; path = YWeatherGetter4i/YWeather4iConsts.h; sourceTree = "<group>"; };
+		C8D7037817A2DBE9006BB177 /* Consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Consts.h; path = YWeatherGetter4i/Consts.h; sourceTree = "<group>"; };
 		C8D7038217A35F70006BB177 /* YWeatherListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YWeatherListener.h; path = YWeatherGetter4i/YWeatherListener.h; sourceTree = "<group>"; };
 		C8D7038317A35FC2006BB177 /* WeatherInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherInfo.h; path = YWeatherGetter4i/WeatherInfo.h; sourceTree = "<group>"; };
 		C8D7038417A35FC2006BB177 /* WeatherInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherInfo.m; path = YWeatherGetter4i/WeatherInfo.m; sourceTree = "<group>"; };
@@ -37,6 +38,8 @@
 		C8D7038717A35FFC006BB177 /* YWeatherUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YWeatherUtils.m; path = YWeatherGetter4i/YWeatherUtils.m; sourceTree = "<group>"; };
 		C8D7038917A37D6C006BB177 /* LogUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogUtils.h; sourceTree = "<group>"; };
 		C8D7038A17A37D6C006BB177 /* LogUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogUtils.m; sourceTree = "<group>"; };
+		C8F0B0E117A4209000433A3B /* TBXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBXML.h; sourceTree = "<group>"; };
+		C8F0B0E217A4209000433A3B /* TBXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBXML.m; sourceTree = "<group>"; };
 		EF8BE3FD179E6FC600694D5E /* YWeatherGetter4iTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YWeatherGetter4iTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF8BE400179E6FC600694D5E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EF8BE402179E6FC600694D5E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -73,7 +76,9 @@
 		C8D7037B17A2DC08006BB177 /* YWeatherGetter4i */ = {
 			isa = PBXGroup;
 			children = (
-				C8D7037817A2DBE9006BB177 /* YWeather4iConsts.h */,
+				C8F0B0E117A4209000433A3B /* TBXML.h */,
+				C8F0B0E217A4209000433A3B /* TBXML.m */,
+				C8D7037817A2DBE9006BB177 /* Consts.h */,
 				C8D7037517A2DA4A006BB177 /* WOEIDUtils.h */,
 				C8D7037617A2DA4A006BB177 /* WOEIDUtils.m */,
 				C8B8BEB617A3FE5500CF3DA6 /* WOEIDUtilsDelegate.h */,
@@ -218,6 +223,7 @@
 				C8D7038517A35FC2006BB177 /* WeatherInfo.m in Sources */,
 				C8D7038817A35FFC006BB177 /* YWeatherUtils.m in Sources */,
 				C8D7038B17A37D6C006BB177 /* LogUtils.m in Sources */,
+				C8F0B0E317A4209000433A3B /* TBXML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,6 @@
 
 @protocol WOEIDUtilsDelegate <NSObject>
 
--(NSString*)gotWOEIDdata:(NSMutableData*)receivedData;
+-(void)gotWOEIDfromYahooAPIs:(NSString*)recievedWOEID;
 
 @end

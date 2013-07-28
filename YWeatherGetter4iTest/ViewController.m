@@ -32,10 +32,45 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)gotWeatherInfo:(WeatherInfo *)receivedData {
-    DLog(@"");
-    [mLabelWeatherInfo setText: receivedData.RESULT_STATUS];
-    DLog(@"%@", receivedData.RESULT_STATUS);
+- (void)gotWeatherInfo:(WeatherInfo *)weatherInfo {
+    NSMutableString* text = nil;
+    if (weatherInfo == nil) {
+        text = [NSMutableString stringWithString:YAHOO_WEATHER_ERROR];
+        [mLabelWeatherInfo setText: text];
+        return;
+    }
+    text = [NSMutableString stringWithString:@""];
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mDescription]) {
+        [text appendString:weatherInfo.mDescription];
+        [text appendString:@"\n"];
+    }
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mLastBuildDate]) {
+        [text appendString:weatherInfo.mLastBuildDate];
+        [text appendString:@"\n"];
+    }
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mLocationCity]) {
+        [text appendString:weatherInfo.mLocationCity];
+        [text appendString:@", "];
+    }
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mLocationRegion]) {
+        [text appendString:weatherInfo.mLocationRegion];
+        [text appendString:@", "];
+    }
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mLocationCountry]) {
+        [text appendString:weatherInfo.mLocationCountry];
+    }
+    [text appendString:@"\n"];
+    
+    
+    
+    [mLabelWeatherInfo setText: text];
+}
+
+- (bool)stringIsNonNilOrEmpty:(NSString*)pString {
+    if (pString != nil && ![pString isEqualToString:@""]) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

@@ -12,7 +12,7 @@
 #import "WOEIDUtils.h"
 #import "WOEIDUtilsDelegate.h"
 
-@interface YWeatherUtils : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate, WOEIDUtilsDelegate>
+@interface YWeatherUtils : NSObject <NSURLConnectionDelegate, WOEIDUtilsDelegate>
 
 @property (nonatomic, assign) id mAfterRecieveDataDelegate;
 @property (nonatomic, retain) NSMutableData* receivedData;
@@ -21,7 +21,6 @@
 
 +(YWeatherUtils*)getInstance;
 -(void)queryYahooWeather:(NSString*)pCityName;
--(NSString*)queryWOIED:(NSString*)pCityName;
 
 @end
 

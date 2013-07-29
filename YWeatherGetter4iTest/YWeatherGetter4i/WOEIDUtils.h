@@ -14,7 +14,7 @@
 #import "WOEIDUtilsDelegate.h"
 #import "TBXML.h"
 
-@interface WOEIDUtils : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
+@interface WOEIDUtils : NSObject <NSURLConnectionDelegate>
 @property (nonatomic, retain) NSMutableData* receivedData;
 @property (nonatomic, assign) id mAfterReceiveDataDelegate;
 @property (nonatomic) TBXMLElement* mWOEIDelement;

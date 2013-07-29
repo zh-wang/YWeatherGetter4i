@@ -150,17 +150,76 @@ static YWeatherUtils* _instance = nil;
         if ([[TBXML elementName:element] isEqualToString: TAG_YWEATHER_LOCATION]) {
             TBXMLAttribute * attribute = element->firstAttribute;
             while (attribute) {
-                if ([[TBXML attributeName:attribute] isEqualToString:TAG_CITY]) {
+                if ([[TBXML attributeName:attribute] isEqualToString:TAG_LOCATION_CITY]) {
                     result.mLocationCity = [TBXML attributeValue:attribute];
                 }
-                if ([[TBXML attributeName:attribute] isEqualToString:TAG_REGION]) {
+                if ([[TBXML attributeName:attribute] isEqualToString:TAG_LOCATION_REGION]) {
                     result.mLocationRegion = [TBXML attributeValue:attribute];
                 }
-                if ([[TBXML attributeName:attribute] isEqualToString:TAG_COUNTRY]) {
+                if ([[TBXML attributeName:attribute] isEqualToString:TAG_LOCATION_COUNTRY]) {
                     result.mLocationCountry = [TBXML attributeValue:attribute];
                 }
                 attribute = attribute->next;
             }
+        }
+        if ([[TBXML elementName:element] isEqualToString: TAG_YWEATHER_WIND]) {
+            TBXMLAttribute* attribute = element->firstAttribute;
+            while (attribute) {
+                if ([[TBXML attributeName:attribute] isEqualToString: TAG_WIND_CHILL]) {
+                    result.mWindChill = [TBXML attributeValue:attribute];
+                }
+                if ([[TBXML attributeName:attribute] isEqualToString: TAG_WIND_DIRECTION]) {
+                    result.mWindDirection = [TBXML attributeValue:attribute];
+                }
+                if ([[TBXML attributeName:attribute] isEqualToString: TAG_WIND_SPEED]) {
+                    result.mWindSpeed = [TBXML attributeValue:attribute];
+                }
+                attribute = attribute->next;
+            }
+        }
+        if ([[TBXML elementName:element] isEqualToString: TAG_YWEATHER_ATMOSPHERE]) {
+            TBXMLAttribute* attribute = element->firstAttribute;
+            while (attribute) {
+                if ([[TBXML attributeName:attribute] isEqualToString: TAG_ATMOSPHERE_HUMIDITY]) {
+                    result.mAtmosphereHumidity = [TBXML attributeValue:attribute];
+                }
+                if ([[TBXML attributeName:attribute] isEqualToString: TAG_ATMOSPHERE_PRESSURE]) {
+                    result.mAtmospherePressure = [TBXML attributeValue:attribute];
+                }
+                if ([[TBXML attributeName:attribute] isEqualToString: TAG_ATMOSPHERE_RISING]) {
+                    result.mAtmosphereRising = [TBXML attributeValue:attribute];
+                }
+                if ([[TBXML attributeName:attribute] isEqualToString: TAG_ATMOSPHERE_VISIBILITY]) {
+                    result.mAtmosphereVisibility = [TBXML attributeValue:attribute];
+                }
+                attribute = attribute->next;
+            }
+        }
+        if ([[TBXML elementName:element] isEqualToString: TAG_YWEATHER_ASTRONOMY]) {
+            TBXMLAttribute* attribute = element->firstAttribute;
+            while (attribute) {
+                if ([[TBXML attributeName:attribute] isEqualToString: TAG_ASTRONOMY_SUNRISE]) {
+                    result.mAstronomySunrise = [TBXML attributeValue:attribute];
+                }
+                if ([[TBXML attributeName:attribute] isEqualToString: TAG_ASTRONOMY_SUNSET]) {
+                    result.mAstronomySunset = [TBXML attributeValue:attribute];
+                }
+                attribute = attribute->next;
+            }
+        }
+        if ([[TBXML elementName:element] isEqualToString: TAG_ITEM]) {
+            TBXMLElement* childElement = element->firstChild;
+            do {
+                if ([[TBXML elementName:childElement] isEqualToString:TAG_CONDITION_TITLE]) {
+                    result.mConditionTitle = [TBXML textForElement:childElement];
+                }
+                if ([[TBXML elementName:childElement] isEqualToString:TAG_CONDITION_GEOLAT]) {
+                    result.mConditionLat = [TBXML textForElement:childElement];
+                }
+                if ([[TBXML elementName:childElement] isEqualToString:TAG_CONDITION_GEOLONG]) {
+                    result.mConditionLon = [TBXML textForElement:childElement];
+                }
+            } while ((childElement = childElement->nextSibling));
         }
     }
     

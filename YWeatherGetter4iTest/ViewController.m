@@ -60,7 +60,18 @@
         [text appendString:weatherInfo.mLocationCountry];
     }
     [text appendString:@"\n"];
-    
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mConditionTitle]) {
+        [text appendString:weatherInfo.mConditionTitle];
+        [text appendString:@"\n"];
+    }
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mConditionLat]) {
+        [text appendString:weatherInfo.mConditionLat];
+        [text appendString:@", "];
+    }
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mConditionLon]) {
+        [text appendString:weatherInfo.mConditionLon];
+    }
+    [text appendString:@"\n"];
     
     
     [mLabelWeatherInfo setText: text];

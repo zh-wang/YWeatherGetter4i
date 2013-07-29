@@ -76,12 +76,12 @@ static YWeatherUtils* _instance = nil;
         return;
     }
     
-//    WeatherInfo* weatherInfo = [[WeatherInfo alloc] init];
-//    weatherInfo.RESULT_STATUS = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-//    [mAfterRecieveDataDelegate gotWeatherInfo:weatherInfo];
-    
     NSError* error;
     TBXML* tbxml = [TBXML newTBXMLWithXMLData:receivedData error:&error];
+    if (error) {
+        NSLog(@"%@ %@", [error localizedDescription], [error userInfo]);
+        return;
+    }
     TBXMLElement* rootElement = tbxml.rootXMLElement;
     
     mResultElement = nil;

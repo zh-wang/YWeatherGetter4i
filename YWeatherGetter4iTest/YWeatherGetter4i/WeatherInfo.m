@@ -16,6 +16,10 @@
 @synthesize mDescription;
 @synthesize mLanguage;
 @synthesize mLastBuildDate;
+@synthesize mUnitsTemperature;
+@synthesize mUnitsDistance;
+@synthesize mUnitsPressure;
+@synthesize mUnitsSpeed;
 @synthesize mLocationCity;
 @synthesize mLocationRegion;
 @synthesize mLocationCountry;

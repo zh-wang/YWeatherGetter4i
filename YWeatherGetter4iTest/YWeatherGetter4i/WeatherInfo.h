@@ -26,6 +26,11 @@
 @property (nonatomic, retain) NSString* mLocationRegion; // region may be null
 @property (nonatomic, retain) NSString* mLocationCountry;
 
+@property (nonatomic, retain) NSString* mUnitsTemperature;
+@property (nonatomic, retain) NSString* mUnitsDistance;
+@property (nonatomic, retain) NSString* mUnitsPressure;
+@property (nonatomic, retain) NSString* mUnitsSpeed;
+
 @property (nonatomic, retain) NSString* mWindChill;
 @property (nonatomic, retain) NSString* mWindDirection;
 @property (nonatomic, retain) NSString* mWindSpeed;

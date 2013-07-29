@@ -66,6 +66,10 @@ static WOEIDUtils* _instance = nil;
     NSError* error;
     TBXML* tbxml = [TBXML newTBXMLWithXMLData:receivedData error:&error];
     TBXMLElement* rootXMLElement = tbxml.rootXMLElement;
+    if (error) {
+        NSLog(@"%@ %@", [error localizedDescription], [error userInfo]);
+        return WOEID_NOT_FOUND;
+    }
     [self traverseElement:rootXMLElement];
     NSString* woeid = [TBXML textForElement:mWOEIDelement];
     return woeid;

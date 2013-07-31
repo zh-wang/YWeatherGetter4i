@@ -71,8 +71,20 @@
     if ([self stringIsNonNilOrEmpty:weatherInfo.mConditionLon]) {
         [text appendString:weatherInfo.mConditionLon];
     }
-    [text appendString:@"\n"];
-    
+    [text appendString:@"\n\n"];
+    [text appendString:@"Current weather info\n"];
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mCurrentConditionDate]) {
+        [text appendString:weatherInfo.mCurrentConditionDate];
+        [text appendString:@"\n"];
+    }
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mCurrentText]) {
+        [text appendString:weatherInfo.mCurrentText];
+        [text appendString:@"\n"];
+    }
+    if ([self stringIsNonNilOrEmpty:[NSString stringWithFormat: @"%d", weatherInfo.mCurrentTempC]]) {
+        [text appendString:[NSString stringWithFormat: @"%dºC, %dºF", weatherInfo.mCurrentTempC, weatherInfo.mCurrentTempF]];
+        [text appendString:@"\n"];
+    }
     
     [mLabelWeatherInfo setText: text];
 }

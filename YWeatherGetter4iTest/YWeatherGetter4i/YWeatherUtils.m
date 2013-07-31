@@ -162,6 +162,24 @@ static YWeatherUtils* _instance = nil;
                 attribute = attribute->next;
             }
         }
+        if ([[TBXML elementName:element] isEqualToString: TAG_YWEATHER_UNITS]) {
+            TBXMLAttribute* attribute = element->firstAttribute;
+            while (attribute) {
+                if ([[TBXML attributeName:attribute] isEqualToString:TAG_UNITS_TEMPERATURE]) {
+                    result.mUnitsTemperature = [TBXML attributeValue:attribute];
+                }
+                if ([[TBXML attributeName:attribute] isEqualToString:TAG_UNITS_DISTANCE]) {
+                    result.mUnitsDistance = [TBXML attributeValue:attribute];
+                }
+                if ([[TBXML attributeName:attribute] isEqualToString:TAG_UNITS_PRESSURE]) {
+                    result.mUnitsPressure = [TBXML attributeValue:attribute];
+                }
+                if ([[TBXML attributeName:attribute] isEqualToString:TAG_UNITS_SPEED]) {
+                    result.mUnitsSpeed = [TBXML attributeValue:attribute];
+                }
+                attribute = attribute->next;
+            }
+        }
         if ([[TBXML elementName:element] isEqualToString: TAG_YWEATHER_WIND]) {
             TBXMLAttribute* attribute = element->firstAttribute;
             while (attribute) {
@@ -219,11 +237,44 @@ static YWeatherUtils* _instance = nil;
                 if ([[TBXML elementName:childElement] isEqualToString:TAG_CONDITION_GEOLONG]) {
                     result.mConditionLon = [TBXML textForElement:childElement];
                 }
+                if ([[TBXML elementName:childElement] isEqualToString: TAG_YWEATHER_CONDITION]) {
+                    TBXMLAttribute* attribute = childElement->firstAttribute;
+                    while (attribute) {
+                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_TEXT]) {
+                            result.mCurrentText = [TBXML attributeValue:attribute];
+                        }
+                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_CODE]) {
+                            result.mCurrentCode = [[TBXML attributeValue:attribute] intValue];
+                        }
+                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_TEMP]) {
+                            int t = [[TBXML attributeValue:attribute] intValue];
+                            if ([result.mUnitsTemperature isEqualToString: @"F"]) {
+                                result.mCurrentTempF = t;
+                                result.mCurrentTempC = [self F2C:result.mCurrentTempF];
+                            } else {
+                                result.mCurrentTempC = t;
+                                result.mCurrentTempF = [self C2F:result.mCurrentTempC];
+                            }
+                        }
+                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_DATE]) {
+                            result.mCurrentConditionDate = [TBXML attributeValue:attribute];
+                        }
+                        attribute = attribute->next;
+                    }
+                }
             } while ((childElement = childElement->nextSibling));
         }
     }
     
     return result;
+}
+
+-(int) F2C:(int) tempInF {
+    return (tempInF - 32) * 5 / 9;
+}
+
+-(int) C2F:(int) tempInC {
+    return tempInC * 9 / 5 + 32;
 }
 
 @end

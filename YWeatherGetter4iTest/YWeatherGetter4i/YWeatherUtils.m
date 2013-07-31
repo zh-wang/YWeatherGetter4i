@@ -10,7 +10,9 @@
 
 static YWeatherUtils* _instance = nil;
 
-@implementation YWeatherUtils 
+@implementation YWeatherUtils {
+    int mForecastCount;
+}
 
 @synthesize mAfterRecieveDataDelegate;
 @synthesize receivedData;
@@ -23,6 +25,14 @@ static YWeatherUtils* _instance = nil;
             _instance = [[self alloc] init];
         return _instance;
     }
+}
+
+-(id) init {
+    self = [super init];
+	if (self != nil) {
+        mForecastCount = 1;
+    }
+    return self;
 }
 
 -(void)queryYahooWeather:(NSString *)pCityName {
@@ -228,13 +238,13 @@ static YWeatherUtils* _instance = nil;
         if ([[TBXML elementName:element] isEqualToString: TAG_ITEM]) {
             TBXMLElement* childElement = element->firstChild;
             do {
-                if ([[TBXML elementName:childElement] isEqualToString:TAG_CONDITION_TITLE]) {
+                if ([[TBXML elementName:childElement] isEqualToString: TAG_CONDITION_TITLE]) {
                     result.mConditionTitle = [TBXML textForElement:childElement];
                 }
-                if ([[TBXML elementName:childElement] isEqualToString:TAG_CONDITION_GEOLAT]) {
+                if ([[TBXML elementName:childElement] isEqualToString: TAG_CONDITION_GEOLAT]) {
                     result.mConditionLat = [TBXML textForElement:childElement];
                 }
-                if ([[TBXML elementName:childElement] isEqualToString:TAG_CONDITION_GEOLONG]) {
+                if ([[TBXML elementName:childElement] isEqualToString: TAG_CONDITION_GEOLONG]) {
                     result.mConditionLon = [TBXML textForElement:childElement];
                 }
                 if ([[TBXML elementName:childElement] isEqualToString: TAG_YWEATHER_CONDITION]) {
@@ -258,6 +268,44 @@ static YWeatherUtils* _instance = nil;
                         }
                         if ([[TBXML attributeName:attribute] isEqualToString: TAG_DATE]) {
                             result.mCurrentConditionDate = [TBXML attributeValue:attribute];
+                        }
+                        attribute = attribute->next;
+                    }
+                }
+                if ([[TBXML elementName:childElement] isEqualToString: TAG_YWEATHER_FORECAST] && mForecastCount == 1) {
+                    mForecastCount++;
+                    TBXMLAttribute* attribute = childElement->firstAttribute;
+                    while (attribute) {
+                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_DAY]) {
+                            result.mForecast1Day = [TBXML attributeValue:attribute];
+                        }
+                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_DATE]) {
+                            result.mForecast1Date = [TBXML attributeValue:attribute];
+                        }
+                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_LOW]) {
+                            int t = [[TBXML attributeValue:attribute] intValue];
+                            if ([result.mUnitsTemperature isEqualToString: @"F"]) {
+                                result.mForecast1TempLowF = t;
+                                result.mForecast1TempLowC = [self F2C:result.mForecast1TempLowF];
+                            } else {
+                                result.mForecast1TempLowC = t;
+                                result.mForecast1TempLowF = [self C2F:result.mForecast1TempLowC];
+                            }                        }
+                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_HIGH]) {
+                            int t = [[TBXML attributeValue:attribute] intValue];
+                            if ([result.mUnitsTemperature isEqualToString: @"F"]) {
+                                result.mForecast1TempHighF = t;
+                                result.mForecast1TempHighC = [self F2C:result.mForecast1TempHighF];
+                            } else {
+                                result.mForecast1TempHighC = t;
+                                result.mForecast1TempHighF = [self C2F:result.mForecast1TempHighC];
+                            }
+                        }
+                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_CODE]) {
+                            result.mForecast1Code = [[TBXML attributeValue:attribute] intValue];
+                        }
+                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_TEXT]) {
+                            result.mForecast1Text = [TBXML attributeName:attribute];
                         }
                         attribute = attribute->next;
                     }

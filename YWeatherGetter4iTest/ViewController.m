@@ -85,6 +85,16 @@
         [text appendString:[NSString stringWithFormat: @"%dºC, %dºF", weatherInfo.mCurrentTempC, weatherInfo.mCurrentTempF]];
         [text appendString:@"\n"];
     }
+    [text appendString:@"\n"];
+    [text appendString:@"Forecast 1\n"];
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast1Date]) {
+        [text appendString:weatherInfo.mForecast1Date];
+        [text appendString:@"\n"];
+    }
+    if ([self stringIsNonNilOrEmpty:[NSString stringWithFormat: @"%d", weatherInfo.mForecast1TempLowC]]) {
+        [text appendString:[NSString stringWithFormat: @"low: %dºC  high %dºC", weatherInfo.mForecast1TempLowC, weatherInfo.mForecast1TempHighC]];
+        [text appendString:@"\n"];
+    }
     
     [mLabelWeatherInfo setText: text];
 }

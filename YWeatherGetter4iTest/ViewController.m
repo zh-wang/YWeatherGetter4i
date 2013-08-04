@@ -72,7 +72,7 @@
         [text appendString:weatherInfo.mConditionLon];
     }
     [text appendString:@"\n\n"];
-    [text appendString:@"Current weather info\n"];
+    [text appendString:@"***Current weather info***\n"];
     if ([self stringIsNonNilOrEmpty:weatherInfo.mCurrentConditionDate]) {
         [text appendString:weatherInfo.mCurrentConditionDate];
         [text appendString:@"\n"];
@@ -82,17 +82,36 @@
         [text appendString:@"\n"];
     }
     if ([self stringIsNonNilOrEmpty:[NSString stringWithFormat: @"%d", weatherInfo.mCurrentTempC]]) {
-        [text appendString:[NSString stringWithFormat: @"%dºC, %dºF", weatherInfo.mCurrentTempC, weatherInfo.mCurrentTempF]];
+        [text appendString:[NSString stringWithFormat: @"%dºC(%dºF)", weatherInfo.mCurrentTempC, weatherInfo.mCurrentTempF]];
         [text appendString:@"\n"];
     }
     [text appendString:@"\n"];
-    [text appendString:@"Forecast 1\n"];
-    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast1Date]) {
-        [text appendString:weatherInfo.mForecast1Date];
+    [text appendString:@"***Forecast 1***\n"];
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast1Info.mForecastDate]) {
+        [text appendString:weatherInfo.mForecast1Info.mForecastDate];
         [text appendString:@"\n"];
     }
-    if ([self stringIsNonNilOrEmpty:[NSString stringWithFormat: @"%d", weatherInfo.mForecast1TempLowC]]) {
-        [text appendString:[NSString stringWithFormat: @"low: %dºC  high %dºC", weatherInfo.mForecast1TempLowC, weatherInfo.mForecast1TempHighC]];
+    if ([self stringIsNonNilOrEmpty:[NSString stringWithFormat: @"%d", weatherInfo.mForecast1Info.mForecastTempLowC]]) {
+        [text appendString:[NSString stringWithFormat: @"low: %dºC  high: %dºC", weatherInfo.mForecast1Info.mForecastTempLowC, weatherInfo.mForecast1Info.mForecastTempHighC]];
+        [text appendString:@"\n"];
+    }
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast1Info.mForecastText]) {
+        [text appendString:weatherInfo.mForecast1Info.mForecastText];
+        [text appendString:@"\n"];
+    }
+    
+    [text appendString:@"\n"];
+    [text appendString:@"***Forecast 2***\n"];
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast2Info.mForecastDate]) {
+        [text appendString:weatherInfo.mForecast2Info.mForecastDate];
+        [text appendString:@"\n"];
+    }
+    if ([self stringIsNonNilOrEmpty:[NSString stringWithFormat: @"%d", weatherInfo.mForecast2Info.mForecastTempLowC]]) {
+        [text appendString:[NSString stringWithFormat: @"low: %dºC  high: %dºC", weatherInfo.mForecast2Info.mForecastTempLowC, weatherInfo.mForecast2Info.mForecastTempHighC]];
+        [text appendString:@"\n"];
+    }
+    if ([self stringIsNonNilOrEmpty:weatherInfo.mForecast2Info.mForecastText]) {
+        [text appendString:weatherInfo.mForecast2Info.mForecastText];
         [text appendString:@"\n"];
     }
     

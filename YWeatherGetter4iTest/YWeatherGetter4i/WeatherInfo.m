@@ -8,6 +8,9 @@
 
 #import "WeatherInfo.h"
 
+/*
+ * Weather Info class
+ */
 @implementation WeatherInfo
 
 @synthesize RESULT_STATUS;
@@ -43,24 +46,32 @@
 @synthesize mCurrentConditionIconURL;
 @synthesize mCurrentConditionDate;
 
-@synthesize mForecast1Day;
-@synthesize mForecast1Date;
-@synthesize mForecast1Code;
-@synthesize mForecast1Text;
-@synthesize mForecast1TempHighC;
-@synthesize mForecast1TempHighF;
-@synthesize mForecast1TempLowC;
-@synthesize mForecast1TempLowF;
-@synthesize mForecast1ConditionIconURL;
+@synthesize mForecast1Info;
+@synthesize mForecast2Info;
 
-@synthesize mForecast2Day;
-@synthesize mForecast2Date;
-@synthesize mForecast2Code;
-@synthesize mForecast2Text;
-@synthesize mForecast2TempHighC;
-@synthesize mForecast2TempLowC;
-@synthesize mForecast2TempHighF;
-@synthesize mForecast2TempLowF;
-@synthesize mForecast2ConditionIconURL;
+-(id)init {
+    self = [super init];
+	if (self != nil) {
+        mForecast1Info = [[ForecastInfo alloc] init];
+        mForecast2Info = [[ForecastInfo alloc] init];
+    }
+    return self;
+}
+
+@end
+
+/*
+ * Forecast Info class
+ */
+@implementation ForecastInfo
+@synthesize mForecastDay;
+@synthesize mForecastDate;
+@synthesize mForecastCode;
+@synthesize mForecastConditionIconURL;
+@synthesize mForecastTempHighC;
+@synthesize mForecastTempHighF;
+@synthesize mForecastTempLowC;
+@synthesize mForecastTempLowF;
+@synthesize mForecastText;
 
 @end

@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class WeatherInfo;
+@class ForecastInfo;
+
+/*
+ * Weather Info class
+ */
 @interface WeatherInfo : NSOperation
 
 /*
@@ -60,27 +66,28 @@
 /*
  * information in the first tag "yweather:forecast"
  */
-@property (nonatomic, retain) NSString* mForecast1Day;
-@property (nonatomic, retain) NSString* mForecast1Date;
-@property (nonatomic, readwrite) int mForecast1Code;
-@property (nonatomic, retain) NSString* mForecast1Text;
-@property (nonatomic, readwrite) int mForecast1TempHighC;
-@property (nonatomic, readwrite) int mForecast1TempLowC;
-@property (nonatomic, readwrite) int mForecast1TempHighF;
-@property (nonatomic, readwrite) int mForecast1TempLowF;
-@property (nonatomic, retain) NSString* mForecast1ConditionIconURL;
+@property (nonatomic, retain) ForecastInfo* mForecast1Info;
 
 /*
  * information in the second tag "yweather:forecast"
  */
-@property (nonatomic, retain) NSString* mForecast2Day;
-@property (nonatomic, retain) NSString* mForecast2Date;
-@property (nonatomic, readwrite) int mForecast2Code;
-@property (nonatomic, retain) NSString* mForecast2Text;
-@property (nonatomic, readwrite) int mForecast2TempHighC;
-@property (nonatomic, readwrite) int mForecast2TempLowC;
-@property (nonatomic, readwrite) int mForecast2TempHighF;
-@property (nonatomic, readwrite) int mForecast2TempLowF;
-@property (nonatomic, retain) NSString* mForecast2ConditionIconURL;
+@property (nonatomic, retain) ForecastInfo* mForecast2Info;
+
+@end
+
+/*
+ * Forecast Info class
+ */
+@interface ForecastInfo : NSObject
+
+@property (nonatomic, retain) NSString* mForecastDay;
+@property (nonatomic, retain) NSString* mForecastDate;
+@property (nonatomic, readwrite) int mForecastCode;
+@property (nonatomic, retain) NSString* mForecastText;
+@property (nonatomic, readwrite) int mForecastTempHighC;
+@property (nonatomic, readwrite) int mForecastTempLowC;
+@property (nonatomic, readwrite) int mForecastTempHighF;
+@property (nonatomic, readwrite) int mForecastTempLowF;
+@property (nonatomic, retain) NSString* mForecastConditionIconURL;
 
 @end

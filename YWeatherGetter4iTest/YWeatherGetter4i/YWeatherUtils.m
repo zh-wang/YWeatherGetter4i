@@ -275,46 +275,60 @@ static YWeatherUtils* _instance = nil;
                 if ([[TBXML elementName:childElement] isEqualToString: TAG_YWEATHER_FORECAST] && mForecastCount == 1) {
                     mForecastCount++;
                     TBXMLAttribute* attribute = childElement->firstAttribute;
-                    while (attribute) {
-                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_DAY]) {
-                            result.mForecast1Day = [TBXML attributeValue:attribute];
-                        }
-                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_DATE]) {
-                            result.mForecast1Date = [TBXML attributeValue:attribute];
-                        }
-                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_LOW]) {
-                            int t = [[TBXML attributeValue:attribute] intValue];
-                            if ([result.mUnitsTemperature isEqualToString: @"F"]) {
-                                result.mForecast1TempLowF = t;
-                                result.mForecast1TempLowC = [self F2C:result.mForecast1TempLowF];
-                            } else {
-                                result.mForecast1TempLowC = t;
-                                result.mForecast1TempLowF = [self C2F:result.mForecast1TempLowC];
-                            }                        }
-                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_HIGH]) {
-                            int t = [[TBXML attributeValue:attribute] intValue];
-                            if ([result.mUnitsTemperature isEqualToString: @"F"]) {
-                                result.mForecast1TempHighF = t;
-                                result.mForecast1TempHighC = [self F2C:result.mForecast1TempHighF];
-                            } else {
-                                result.mForecast1TempHighC = t;
-                                result.mForecast1TempHighF = [self C2F:result.mForecast1TempHighC];
-                            }
-                        }
-                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_CODE]) {
-                            result.mForecast1Code = [[TBXML attributeValue:attribute] intValue];
-                        }
-                        if ([[TBXML attributeName:attribute] isEqualToString: TAG_TEXT]) {
-                            result.mForecast1Text = [TBXML attributeName:attribute];
-                        }
-                        attribute = attribute->next;
-                    }
+                    [self parseForecastInfo:result.mForecast1Info :result :attribute];
+                    childElement = childElement->nextSibling;
+                }
+                if ([[TBXML elementName:childElement] isEqualToString: TAG_YWEATHER_FORECAST] && mForecastCount == 2) {
+                    mForecastCount++;
+                    TBXMLAttribute* attribute = childElement->firstAttribute;
+                    [self parseForecastInfo:result.mForecast2Info :result :attribute];
                 }
             } while ((childElement = childElement->nextSibling));
         }
     }
     
     return result;
+}
+
+-(void) parseForecasts:(TBXMLElement*) pElement {
+    
+}
+
+-(void) parseForecastInfo:(ForecastInfo*) forecastInfo :(WeatherInfo*) pWeatherInfo :(TBXMLAttribute*) pAttribute {
+    while (pAttribute) {
+        if ([[TBXML attributeName:pAttribute] isEqualToString: TAG_DAY]) {
+            forecastInfo.mForecastDay = [TBXML attributeValue:pAttribute];
+        }
+        if ([[TBXML attributeName:pAttribute] isEqualToString: TAG_DATE]) {
+            forecastInfo.mForecastDate = [TBXML attributeValue:pAttribute];
+        }
+        if ([[TBXML attributeName:pAttribute] isEqualToString: TAG_LOW]) {
+            int t = [[TBXML attributeValue:pAttribute] intValue];
+            if ([pWeatherInfo.mUnitsTemperature isEqualToString: @"F"]) {
+                forecastInfo.mForecastTempLowF = t;
+                forecastInfo.mForecastTempLowC = [self F2C:forecastInfo.mForecastTempLowF];
+            } else {
+                forecastInfo.mForecastTempLowC = t;
+                forecastInfo.mForecastTempLowF = [self C2F:forecastInfo.mForecastTempLowC];
+            }                        }
+        if ([[TBXML attributeName:pAttribute] isEqualToString: TAG_HIGH]) {
+            int t = [[TBXML attributeValue:pAttribute] intValue];
+            if ([pWeatherInfo.mUnitsTemperature isEqualToString: @"F"]) {
+                forecastInfo.mForecastTempHighF = t;
+                forecastInfo.mForecastTempHighC = [self F2C:forecastInfo.mForecastTempHighF];
+            } else {
+                forecastInfo.mForecastTempHighC = t;
+                forecastInfo.mForecastTempHighF = [self C2F:forecastInfo.mForecastTempHighC];
+            }
+        }
+        if ([[TBXML attributeName:pAttribute] isEqualToString: TAG_CODE]) {
+            forecastInfo.mForecastCode = [[TBXML attributeValue:pAttribute] intValue];
+        }
+        if ([[TBXML attributeName:pAttribute] isEqualToString: TAG_TEXT]) {
+            forecastInfo.mForecastText = [TBXML attributeValue:pAttribute];
+        }
+        pAttribute = pAttribute->next;
+    }
 }
 
 -(int) F2C:(int) tempInF {

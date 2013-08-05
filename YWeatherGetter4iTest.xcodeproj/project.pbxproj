@@ -31,7 +31,7 @@
 		C8D7037517A2DA4A006BB177 /* WOEIDUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOEIDUtils.h; path = YWeatherGetter4i/WOEIDUtils.h; sourceTree = "<group>"; };
 		C8D7037617A2DA4A006BB177 /* WOEIDUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOEIDUtils.m; path = YWeatherGetter4i/WOEIDUtils.m; sourceTree = "<group>"; };
 		C8D7037817A2DBE9006BB177 /* Consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Consts.h; path = YWeatherGetter4i/Consts.h; sourceTree = "<group>"; };
-		C8D7038217A35F70006BB177 /* YWeatherListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YWeatherListener.h; path = YWeatherGetter4i/YWeatherListener.h; sourceTree = "<group>"; };
+		C8D7038217A35F70006BB177 /* YWeatherInfoDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YWeatherInfoDelegate.h; path = YWeatherGetter4i/YWeatherInfoDelegate.h; sourceTree = "<group>"; };
 		C8D7038317A35FC2006BB177 /* WeatherInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeatherInfo.h; path = YWeatherGetter4i/WeatherInfo.h; sourceTree = "<group>"; };
 		C8D7038417A35FC2006BB177 /* WeatherInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeatherInfo.m; path = YWeatherGetter4i/WeatherInfo.m; sourceTree = "<group>"; };
 		C8D7038617A35FFB006BB177 /* YWeatherUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YWeatherUtils.h; path = YWeatherGetter4i/YWeatherUtils.h; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 				C8B8BEB617A3FE5500CF3DA6 /* WOEIDUtilsDelegate.h */,
 				C8D7038617A35FFB006BB177 /* YWeatherUtils.h */,
 				C8D7038717A35FFC006BB177 /* YWeatherUtils.m */,
-				C8D7038217A35F70006BB177 /* YWeatherListener.h */,
+				C8D7038217A35F70006BB177 /* YWeatherInfoDelegate.h */,
 				C8D7038317A35FC2006BB177 /* WeatherInfo.h */,
 				C8D7038417A35FC2006BB177 /* WeatherInfo.m */,
 			);

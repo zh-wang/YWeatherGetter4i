@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "WeatherInfo.h"
 
-@protocol YWeatherUtilsDelegate <NSObject>
+@protocol YWeatherInfoDelegate <NSObject>
 
 -(void)gotWeatherInfo:(WeatherInfo*)recievedData;
 

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YWeatherListener.h"
+#import "YWeatherInfoDelegate.h"
 #import "WeatherInfo.h"
 #import "WOEIDUtils.h"
 #import "WOEIDUtilsDelegate.h"
